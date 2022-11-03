@@ -60,6 +60,6 @@ public final class BridgeServiceProvider implements SLF4JServiceProvider {
     }
 
     public void initialize() {
-        delegate.initialize();
+        // Do nothing on purpose because the delegate has been initialized.
     }
 }
