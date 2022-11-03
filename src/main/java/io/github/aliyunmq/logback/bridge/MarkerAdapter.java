@@ -20,7 +20,7 @@ package io.github.aliyunmq.logback.bridge;
 import java.util.Iterator;
 import org.apache.rocketmq.shaded.org.slf4j.Marker;
 
-public class MarkerAdapter implements Marker {
+public final class MarkerAdapter implements Marker {
     final org.slf4j.Marker delegate;
 
     public MarkerAdapter(org.slf4j.Marker delegate) {

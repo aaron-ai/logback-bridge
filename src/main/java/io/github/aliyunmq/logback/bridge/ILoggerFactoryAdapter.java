@@ -17,7 +17,7 @@
 
 package io.github.aliyunmq.logback.bridge;
 
-public class ILoggerFactoryAdapter implements org.apache.rocketmq.shaded.org.slf4j.ILoggerFactory {
+public final class ILoggerFactoryAdapter implements org.apache.rocketmq.shaded.org.slf4j.ILoggerFactory {
     private final org.slf4j.ILoggerFactory delegate;
 
     public ILoggerFactoryAdapter(org.slf4j.ILoggerFactory delegate) {

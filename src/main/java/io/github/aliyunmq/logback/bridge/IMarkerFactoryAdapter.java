@@ -20,7 +20,7 @@ package io.github.aliyunmq.logback.bridge;
 import org.apache.rocketmq.shaded.org.slf4j.IMarkerFactory;
 import org.apache.rocketmq.shaded.org.slf4j.Marker;
 
-public class IMarkerFactoryAdapter implements IMarkerFactory {
+public final class IMarkerFactoryAdapter implements IMarkerFactory {
     private final org.slf4j.IMarkerFactory delegate;
 
     public IMarkerFactoryAdapter(org.slf4j.IMarkerFactory delegate) {

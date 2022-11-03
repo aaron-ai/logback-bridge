@@ -20,7 +20,7 @@ package io.github.aliyunmq.logback.bridge;
 import org.apache.rocketmq.shaded.org.slf4j.Logger;
 import org.apache.rocketmq.shaded.org.slf4j.Marker;
 
-public class LoggerAdapter implements Logger {
+public final class LoggerAdapter implements Logger {
     private final org.slf4j.Logger delegate;
 
     public LoggerAdapter(org.slf4j.Logger delegate) {

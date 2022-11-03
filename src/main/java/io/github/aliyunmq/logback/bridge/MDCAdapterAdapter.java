@@ -21,7 +21,7 @@ import java.util.Deque;
 import java.util.Map;
 import org.apache.rocketmq.shaded.org.slf4j.spi.MDCAdapter;
 
-public class MDCAdapterAdapter implements MDCAdapter {
+public final class MDCAdapterAdapter implements MDCAdapter {
     private final org.slf4j.spi.MDCAdapter delegate;
 
     public MDCAdapterAdapter(org.slf4j.spi.MDCAdapter delegate) {
