@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public final class BridgeServiceProvider implements SLF4JServiceProvider {
-
     private static final Logger logger = LoggerFactory.getLogger(BridgeServiceProvider.class);
 
     private final org.slf4j.spi.SLF4JServiceProvider delegate;
