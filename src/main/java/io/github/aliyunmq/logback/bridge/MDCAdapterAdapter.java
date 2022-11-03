@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.example;
+package io.github.aliyunmq.logback.bridge;
 
 import java.util.Deque;
 import java.util.Map;

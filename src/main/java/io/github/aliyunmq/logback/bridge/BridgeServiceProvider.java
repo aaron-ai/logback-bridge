@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.example;
+package io.github.aliyunmq.logback.bridge;
 
 import java.lang.reflect.Method;
 import org.apache.rocketmq.shaded.org.slf4j.ILoggerFactory;

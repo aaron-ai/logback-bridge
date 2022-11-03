@@ -15,17 +15,35 @@
  * limitations under the License.
  */
 
-package org.example;
+package io.github.aliyunmq.logback.bridge;
 
-public class ILoggerFactoryAdapter implements org.apache.rocketmq.shaded.org.slf4j.ILoggerFactory {
-    private final org.slf4j.ILoggerFactory delegate;
+import org.apache.rocketmq.shaded.org.slf4j.IMarkerFactory;
+import org.apache.rocketmq.shaded.org.slf4j.Marker;
 
-    public ILoggerFactoryAdapter(org.slf4j.ILoggerFactory delegate) {
+public class IMarkerFactoryAdapter implements IMarkerFactory {
+    private final org.slf4j.IMarkerFactory delegate;
+
+    public IMarkerFactoryAdapter(org.slf4j.IMarkerFactory delegate) {
         this.delegate = delegate;
     }
 
     @Override
-    public org.apache.rocketmq.shaded.org.slf4j.Logger getLogger(String name) {
-        return new LoggerAdapter(delegate.getLogger(name));
+    public Marker getMarker(String name) {
+        return new MarkerAdapter(delegate.getMarker(name));
+    }
+
+    @Override
+    public boolean exists(String name) {
+        return delegate.exists(name);
+    }
+
+    @Override
+    public boolean detachMarker(String name) {
+        return delegate.detachMarker(name);
+    }
+
+    @Override
+    public Marker getDetachedMarker(String name) {
+        return new MarkerAdapter(delegate.getDetachedMarker(name));
     }
 }
