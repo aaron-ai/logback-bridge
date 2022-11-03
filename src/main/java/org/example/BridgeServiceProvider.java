@@ -1,26 +1,30 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ServiceLoader;
+import java.lang.reflect.Method;
 import org.apache.rocketmq.shaded.org.slf4j.ILoggerFactory;
 import org.apache.rocketmq.shaded.org.slf4j.IMarkerFactory;
 import org.apache.rocketmq.shaded.org.slf4j.spi.MDCAdapter;
 import org.apache.rocketmq.shaded.org.slf4j.spi.SLF4JServiceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class BridgeServiceProvider implements SLF4JServiceProvider {
-    private static List<org.slf4j.spi.SLF4JServiceProvider> findServiceProviders() {
-        ServiceLoader<org.slf4j.spi.SLF4JServiceProvider> serviceLoader =
-            ServiceLoader.load(org.slf4j.spi.SLF4JServiceProvider.class);
-        List<org.slf4j.spi.SLF4JServiceProvider> providerList = new ArrayList<>();
-        for (org.slf4j.spi.SLF4JServiceProvider provider : serviceLoader) {
-            providerList.add(provider);
-        }
-        return providerList;
-    }
+
+    private static final Logger logger = LoggerFactory.getLogger(BridgeServiceProvider.class);
 
     private static org.slf4j.spi.SLF4JServiceProvider findServiceProvider() {
-        return findServiceProviders().get(0);
+        logger.debug("Try to find unshaded SLF4j service provider.");
+        try {
+            final Method method = LoggerFactory.class.getDeclaredMethod("getProvider");
+            method.setAccessible(true);
+            final org.slf4j.spi.SLF4JServiceProvider provider =
+                (org.slf4j.spi.SLF4JServiceProvider) method.invoke(null);
+            logger.debug("Found unshaded SLF4j service provider.");
+            return provider;
+        } catch (Throwable t) {
+            // Should never reach here.
+            throw new RuntimeException("Failed to find unshaded SLF4j service provider.", t);
+        }
     }
 
     public ILoggerFactory getLoggerFactory() {
