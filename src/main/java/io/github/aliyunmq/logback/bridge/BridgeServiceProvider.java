@@ -31,6 +31,7 @@ public final class BridgeServiceProvider implements SLF4JServiceProvider {
     private final org.slf4j.spi.SLF4JServiceProvider delegate;
 
     public BridgeServiceProvider() {
+        // Another reason why we print the log here is to make sure the real implementation we want to bridge is loaded.
         logger.debug("Try to find unshaded SLF4j service provider.");
         try {
             final Method method = LoggerFactory.class.getDeclaredMethod("getProvider");
