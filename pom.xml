@@ -25,7 +25,6 @@
     <packaging>jar</packaging>
 
     <name>logback-bridge</name>
-    <url>http://maven.apache.org</url>
 
     <properties>
         <!-- Make it compatible with Java8 -->
